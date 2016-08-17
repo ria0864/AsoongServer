@@ -38,21 +38,21 @@
 		String mypost = null;
 		while (rs.next()) {
 			System.out.println(rs.getString(1));
-			pos_date += rs.getString(2) + "_";
-			pos_title += rs.getString(3) + "_";
-			pos_contents += rs.getString(4) + "_";
-			pos_num += rs.getString(6) + "_";
-			pos_type += rs.getString(7) + "_";
-			pos_gender += rs.getString(8) + "_";
-			pos_trip += rs.getString(9) + "_";
-			pos_budget += rs.getString(10) + "_";
-			pos_convin += rs.getString(11) + "_";
-			pos_startday += rs.getString(12) + "_";
-			pos_endday += rs.getString(13) + "_";
-			pos_pay += rs.getString(14) + "_";
+			pos_date += rs.getString(2) + "|";
+			pos_title += rs.getString(3) + "|";
+			pos_contents += rs.getString(4) + "|";
+			pos_num += rs.getString(6) + "|";
+			pos_type += rs.getString(7) + "|";
+			pos_gender += rs.getString(8) + "|";
+			pos_trip += rs.getString(9) + "|";
+			pos_budget += rs.getString(10) + "|";
+			pos_convin += rs.getString(11) + "|";
+			pos_startday += rs.getString(12) + "|";
+			pos_endday += rs.getString(13) + "|";
+			pos_pay += rs.getString(14) + "|";
 			%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%>
 	<%	}
-			mypost += "~";
+			mypost += "$";
 		} catch (Exception e) {
 		System.out.println(e);
 	}

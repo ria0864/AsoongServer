@@ -154,6 +154,7 @@
 			System.out.println("this is my post add!");
 			String pos_date = request.getParameter("pos_date");
 			String pos_title = request.getParameter("pos_title");
+			System.out.println(pos_title);
 			String pos_contents = request.getParameter("pos_contents");
 			String pos_num = request.getParameter("pos_num");
 			String pos_type = request.getParameter("pos_type");
@@ -164,6 +165,7 @@
 			String pos_startday = request.getParameter("pos_startday");
 			String pos_endday = request.getParameter("pos_endday");
 			String pos_pay = request.getParameter("pos_pay");
+			String mem_no = request.getParameter("mem_no");
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
@@ -182,16 +184,25 @@
 				pstmt.setString(10, pos_startday);
 				pstmt.setString(11, pos_endday);
 				pstmt.setString(12, pos_pay);
-				pstmt.executeUpdate(); //뀨?
-
+				pstmt.setString(13, mem_no);
+				int tf = pstmt.executeUpdate(); //뀨?
+				if (tf != 1) {
+	%>
+	<jsp:forward page="success.xml" />
+	<%
+		} else {
+			%>
+			<jsp:forward page="fail.xml" />
+			<%
+				}
 			} catch (Exception e) {
-
+				System.out.println(e);
 			}
 
 		} else if (action.equals("")) {
 			System.out.println("this is ");
 		}
-	%>ㄹ
+	%>
 
 </body>
 </html>

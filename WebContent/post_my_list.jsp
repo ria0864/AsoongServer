@@ -10,7 +10,7 @@
 	String mem_no = request.getParameter("mem_no");
 	System.out.println(mem_no);
 %>
-<result>mypost <%
+<result>post_my_list$<%
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;

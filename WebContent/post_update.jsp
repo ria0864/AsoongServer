@@ -24,7 +24,7 @@
 	String pos_pay = request.getParameter("pos_pay");
 	System.out.println(pos_no);
 %>
-<result>postUpdate<%
+<result>post_update<%
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -36,7 +36,6 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 		pstmt = conn.prepareStatement(sql);
-		//ql = "update test set addr='별나라'" + "where name='순이'"; 
 		sql = "update Posting set pos_date=?,pos_title=?,pos_contents=?,pos_num=?,pos_type=?,pos_gender=?,pos_trip=?,pos_budget=?,pos_convin=?,pos_startday=?,pos_endday=?,pos_pay=? where post_no=?";
 		pstmt.setString(1, pos_date);
 		pstmt.setString(2, pos_title);

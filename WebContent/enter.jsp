@@ -13,7 +13,6 @@
 		- delete_review 		: review 삭제		[enter_name, mem_id] ->success.xml
 		-
 
-
 -->
 
 <%@page import="java.util.Date"%>
@@ -62,7 +61,8 @@
 
 		request.setCharacterEncoding("utf-8");
 
-		String action = request.getParameter("action");
+//		String action = request.getParameter("action");
+		String action = "enter_search";
 		System.out.println(action);
 
 		if (action == null) {

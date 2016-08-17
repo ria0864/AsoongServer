@@ -6,11 +6,14 @@
 	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
+/* 	String serverURL2 = "jdbc:mysql://localhost/tauction";
+	String serverName2 = "hy";
+	String serverPW2 = "1234"; */
 	
 	String enter_name = request.getParameter("enter_name");
-//	String enterName = "하연펜션";
+//	String enter_name = "하연펜";
 	System.out.println(enter_name);
-	//<result>succuss$기|업|정|보$기|업|정|보</result>
+	//<result>enter_search$기|업|정|보$기|업|정|보</result>
 %>
 
 <result>enter_search$<%

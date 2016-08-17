@@ -62,10 +62,14 @@
 		conn.close();
 	} catch (ClassNotFoundException cnfe) {
 		System.out.println("oracle.jdbc.driver.OracleDriver를 찾을 수 없습니다.");
+		%>
+		<jsp:forward page="fail.xml" />
+		<%
 	} catch (Exception e) {
 		System.out.println(e.toString());
-	} finally {
-		System.out.println("성공!!");
+		%>
+		<jsp:forward page="fail.xml" />
+		<%
 	}
 %>
 </result>

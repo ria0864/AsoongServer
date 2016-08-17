@@ -76,7 +76,9 @@
 <%
 	}
 			} catch (Exception e) {
-
+				%>
+				<jsp:forward page="fail.xml" />
+				<%
 			}
 		}
 		rs.close();

@@ -59,11 +59,15 @@
 		pstmt.close();
 		conn.close();
 	} catch (ClassNotFoundException cnfe) {
+		%>
+		<jsp:forward page="fail.xml" />
+		<%
 		System.out.println("oracle.jdbc.driver.OracleDriver를 찾을 수 없습니다.");
 	} catch (Exception e) {
+		%>
+		<jsp:forward page="fail.xml" />
+		<%
 		System.out.println(e.toString());
-	} finally {
-		System.out.println("성공!!");
 	}
 %>
 </result>

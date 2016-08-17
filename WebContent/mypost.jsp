@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <%@page import="java.sql.*"%>
 <%@page import="com.mysql.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	
+
 	System.out.println("this is my post!");
 	String pos_date = null;
 	String pos_title = null;
@@ -49,11 +50,11 @@
 			pos_convin += rs.getString(11) + "|";
 			pos_startday += rs.getString(12) + "|";
 			pos_endday += rs.getString(13) + "|";
-			pos_pay += rs.getString(14) + "|";
-			%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%>
-	<%	}
-			mypost += "$";
-		} catch (Exception e) {
+			pos_pay += rs.getString(14) + "|" + "$";
+%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%>
+<%
+	}
+	} catch (Exception e) {
 		System.out.println(e);
 	}
 %>

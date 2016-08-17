@@ -34,8 +34,8 @@
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
-		pstmt = conn.prepareStatement(sql);
 		sql = "select * from Posting where mem_no=?";
+		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, mem_no);
 		rs = pstmt.executeQuery(sql);
 		while (rs.next()) {
@@ -54,7 +54,7 @@
 			pos_startday += rs.getString(12) + "|";
 			pos_endday += rs.getString(13) + "|";
 			pos_pay += rs.getString(14) + "|" + "$";
-%><%=mem_no%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%>
+%><%=pos_no%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%><%=mem_no%>
 <%
 	}
 		rs.close();

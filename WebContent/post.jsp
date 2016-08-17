@@ -33,20 +33,6 @@
 			System.out.println("action is null");
 		} else if (action.equals("post_my_list")) { //내 모든 문의글 받아오기
 			System.out.println("this is my post!");
-			String pos_no = null;
-			String pos_date = null;
-			String pos_title = null;
-			String pos_contents = null;
-			String reg_no = null;
-			String pos_num = null;
-			String pos_type = null;
-			String pos_gender = null;
-			String pos_trip = null;
-			String pos_budget = null;
-			String pos_convin = null;
-			String pos_startday = null;
-			String pos_endday = null;
-			String pos_pay = null;
 			String mem_no = null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -61,6 +47,9 @@
 				<jsp:param name="mem_no" value="<%=mem_no%>" />
 			</jsp:forward>
 			<%
+			rs.close();
+			stmt.close();
+			conn.close();
 		} catch (Exception e) {
 				System.out.println(e);
 			}
@@ -109,6 +98,9 @@
 			<jsp:forward page="fail.xml" />
 			<%
 				}
+				rs.close();
+				pstmt.close();
+				conn.close();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
@@ -132,10 +124,17 @@
 				<jsp:param name="pos_no" value="<%=pos_no%>" />
 			</jsp:forward>
 			<%
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch (Exception e) {
 				System.out.println(e);
 			}
 		}else if(action.equals("post_like")){//mem_no에 해당하는 모든 애들 받아오기
 			String mem_no = request.getParameter("mem_no");
-			
+		%>
+			<jsp:forward page="post_like.jsp">
+				<jsp:param name="mem_no" value="<%=mem_no%>" />
+			</jsp:forward>
+			<%
 		}

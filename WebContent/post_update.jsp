@@ -7,6 +7,11 @@
 	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
+	
+	String sql = "";
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 
 	String pos_no = request.getParameter("pos_no");
 	String pos_date = request.getParameter("pos_no");
@@ -25,18 +30,14 @@
 	System.out.println(pos_no);
 %>
 <result>post_update<%
-	String sql = "";
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
 
 	System.out.println("this is my post update!");
 
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
-		pstmt = conn.prepareStatement(sql);
 		sql = "update Posting set pos_date=?,pos_title=?,pos_contents=?,pos_num=?,pos_type=?,pos_gender=?,pos_trip=?,pos_budget=?,pos_convin=?,pos_startday=?,pos_endday=?,pos_pay=? where post_no=?";
+		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, pos_date);
 		pstmt.setString(2, pos_title);
 		pstmt.setString(3, pos_contents);
@@ -56,6 +57,9 @@
  	} else {
  %> <jsp:forward page="fail.xml" /> <%
  	}
+		rs.close();
+		pstmt.close();
+		conn.close();
  	} catch (Exception e) {
  		System.out.println(e);
  	}

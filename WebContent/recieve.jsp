@@ -119,9 +119,11 @@
 			}
 		} else if (action.equals("myPost")) { //내 모든 문의글 받아오기
 			System.out.println("this is my post!");
+			String pos_no = null;
 			String pos_date = null;
 			String pos_title = null;
 			String pos_contents = null;
+			String reg_no = null;
 			String pos_num = null;
 			String pos_type = null;
 			String pos_gender = null;
@@ -131,6 +133,7 @@
 			String pos_startday = null;
 			String pos_endday = null;
 			String pos_pay = null;
+			String mem_no = null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
@@ -138,17 +141,23 @@
 
 				sql = "select mem_no from Member where mem_id=?";
 				rs = stmt.executeQuery(sql);
-				String mem_no = null;
 				mem_no = rs.getString("mem_no");
+				%>
+				<jsp:forward page="mypost.jsp">
+				<jsp:param name="mem_no" value="<%=mem_no%>" />
+				</jsp:forward>
+	<%
 
 				sql = "select * from Posting where mem_no=?";
 				rs = stmt.executeQuery(sql);
 				String mypost = null;
 				while (rs.next()) {
 					System.out.println(rs.getString(1));
+					pos_no += rs.getString(1) + "|";
 					pos_date += rs.getString(2) + "|";
 					pos_title += rs.getString(3) + "|";
 					pos_contents += rs.getString(4) + "|";
+					reg_no += rs.getString(5) + "|";
 					pos_num += rs.getString(6) + "|";
 					pos_type += rs.getString(7) + "|";
 					pos_gender += rs.getString(8) + "|";
@@ -159,6 +168,23 @@
 					pos_endday += rs.getString(13) + "|";
 					pos_pay += rs.getString(14) + "|" + "$";
 	%><%=pos_date%><%=pos_title%><%=pos_contents%><%=pos_num%><%=pos_type%><%=pos_gender%><%=pos_trip%><%=pos_budget%><%=pos_convin%><%=pos_startday%><%=pos_endday%><%=pos_pay%>
+	<%%>
+	<jsp:forward page="mypost.jsp">
+		<jsp:param name="pos_no" value="<%=pos_no%>" />
+		<jsp:param name="pos_date" value="<%=pos_date%>" />
+		<jsp:param name="pos_title" value="<%=pos_title%>" />
+		<jsp:param name="pos_contents" value="<%=pos_contents%>" />
+		<jsp:param name="reg_no" value="<%=reg_no%>" />
+		<jsp:param name="pos_num" value="<%=pos_num%>" />
+		<jsp:param name="pos_type" value="<%=pos_type%>" />
+		<jsp:param name="pos_gender" value="<%=pos_gender%>" />
+		<jsp:param name="pos_trip" value="<%=pos_trip%>" />
+		<jsp:param name="pos_budget" value="<%=pos_budget%>" />
+		<jsp:param name="pos_convin" value="<%=pos_convin%>" />
+		<jsp:param name="pos_startday" value="<%=pos_startday%>" />
+		<jsp:param name="pos_endday" value="<%=pos_endday%>" />
+		<jsp:param name="pos_pay" value="<%=pos_pay%>" />
+	</jsp:forward>
 	<%
 		}
 			} catch (Exception e) {

@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverName = "tauction";
+	String serverPW = "asoong";
+
 	String pos_no = request.getParameter("pos_no");
 	String pos_date = request.getParameter("pos_no");
 	String pos_title = request.getParameter("pos_title");
@@ -30,7 +34,7 @@
 
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 		pstmt = conn.prepareStatement(sql);
 		//ql = "update test set addr='별나라'" + "where name='순이'"; 
 		sql = "update Posting set pos_date=?,pos_title=?,pos_contents=?,pos_num=?,pos_type=?,pos_gender=?,pos_trip=?,pos_budget=?,pos_convin=?,pos_startday=?,pos_endday=?,pos_pay=? where post_no=?";
@@ -56,5 +60,4 @@
  	} catch (Exception e) {
  		System.out.println(e);
  	}
- %>
-</result>
+ %> </result>

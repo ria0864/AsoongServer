@@ -4,11 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverName = "tauction";
+	String serverPW = "asoong";
 	String mem_no = request.getParameter("mem_no");
 	System.out.println(mem_no);
 %>
-<result>mypost
-<%
+<result>mypost <%
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -31,7 +33,7 @@
 	String pos_pay = null;
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		pstmt = conn.prepareStatement(sql);
 		sql = "select * from Posting where mem_no=?";
 		pstmt.setString(1, mem_no);
@@ -65,4 +67,5 @@
 	} finally {
 		System.out.println("성공!!");
 	}
-%></result>
+%>
+</result>

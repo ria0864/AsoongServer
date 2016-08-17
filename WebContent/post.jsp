@@ -1,7 +1,7 @@
 <%@page import="com.mysql.*"%>
 <%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
 		String serverName = "tauction";
 		String serverPW = "asoong";
-		
+
 		String hayeonURL = "jdbc:mysql://localhost/tauction";
 		String enter_name = "";
 
@@ -25,7 +25,7 @@
 		ResultSet rs = null;
 
 		request.setCharacterEncoding("utf-8");
-		
+
 		String action = request.getParameter("action");
 		System.out.println(action);
 		if (action == null) {
@@ -42,18 +42,18 @@
 				sql = "select mem_no from Member where mem_id=?";
 				rs = stmt.executeQuery(sql);
 				mem_no = rs.getString("mem_no");
-			%>
-			<jsp:forward page="post_my_list.jsp">
-				<jsp:param name="mem_no" value="<%=mem_no%>" />
-			</jsp:forward>
-			<%
-			rs.close();
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
+	%>
+	<jsp:forward page="post_my_list.jsp">
+		<jsp:param name="mem_no" value="<%=mem_no%>" />
+	</jsp:forward>
+	<%
+		rs.close();
+				stmt.close();
+				conn.close();
+			} catch (Exception e) {
 				System.out.println(e);
 			}
-		}else if (action.equals("post_add")) { //문의글 올리기
+		} else if (action.equals("post_add")) { //문의글 올리기
 			System.out.println("this is my post add!");
 			String pos_date = request.getParameter("pos_date");
 			String pos_title = request.getParameter("pos_title");
@@ -90,21 +90,21 @@
 				pstmt.setString(13, mem_no);
 				int tf = pstmt.executeUpdate(); //뀨?
 				if (tf != 1) {
-			%>
-			<jsp:forward page="success.xml" />
-			<%
-				} else {
-			%>
-			<jsp:forward page="fail.xml" />
-			<%
-				}
+	%>
+	<jsp:forward page="success.xml" />
+	<%
+		} else {
+	%>
+	<jsp:forward page="fail.xml" />
+	<%
+		}
 				rs.close();
 				pstmt.close();
 				conn.close();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-		}else if (action.equals("post_update")) { // 내 문의글 수정
+		} else if (action.equals("post_update")) { // 내 문의글 수정
 			System.out.println("this is post update");
 			String pos_title = request.getParameter("pos_title");
 			String mem_no = request.getParameter("mem_no");
@@ -119,27 +119,31 @@
 				pstmt.setString(2, mem_no);
 				rs = stmt.executeQuery(sql);
 				pos_no = rs.getString(1);
-			%>
-			<jsp:forward page="post_update.jsp">
-				<jsp:param name="pos_no" value="<%=pos_no%>" />
-			</jsp:forward>
-			<%
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch (Exception e) {
+	%>
+	<jsp:forward page="post_update.jsp">
+		<jsp:param name="pos_no" value="<%=pos_no%>" />
+	</jsp:forward>
+	<%
+		rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
 				System.out.println(e);
 			}
-		}else if(action.equals("post_like")){//mem_no에 해당하는 모든 애들 받아오기
+		} else if (action.equals("post_like")) {//mem_no에 해당하는 모든 애들 받아오기
 			String mem_no = request.getParameter("mem_no");
-		%>
-			<jsp:forward page="post_like.jsp">
-				<jsp:param name="mem_no" value="<%=mem_no%>" />
-			</jsp:forward>
-			<%
-		}else if(action.equals("post_list")){
-		%>
-			<jsp:forward page="post_list.jsp">
-			</jsp:forward>
-			<%
-			}
+	%>
+	<jsp:forward page="post_like.jsp">
+		<jsp:param name="mem_no" value="<%=mem_no%>" />
+	</jsp:forward>
+	<%
+		} else if (action.equals("post_list")) {
+
+			String reg_name = request.getParameter("reg_name");
+	%>
+	<jsp:forward page="post_list.jsp">
+		<jsp:param name="reg_name" value="<%=reg_name%>" />
+	</jsp:forward>
+	<%
+		}
+	

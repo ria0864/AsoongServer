@@ -7,15 +7,12 @@
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	
-	String enter_name = request.getParameter("enter_name");
-//	String enterName = "하연펜션";
-	System.out.println(enter_name);
 	//<result>succuss$기|업|정|보$기|업|정|보</result>
 %>
 
 <result>success$<%
 	
-	String enter_addr,enter_phone,enter_like,enter_intro;
+	String enter_name, enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 		
@@ -23,9 +20,8 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
-		String sql="select * from Enterprise where enter_name like '%?%'";
+		String sql="select * from Enterprise order by enter_like desc";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,enter_name);
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()){

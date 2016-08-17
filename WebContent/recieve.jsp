@@ -202,7 +202,7 @@
 				System.out.println(e);
 			}
 
-		} else if (action.equals("postRemove")) {
+		} else if (action.equals("postRemove")) { // 내 문의글 삭제
 			System.out.println("this is post remove");
 			String pos_title = request.getParameter("pos_title");
 			String mem_no = request.getParameter("mem_no");
@@ -234,15 +234,11 @@
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-		} else if (action.equals("postUpdate")) {
+		} else if (action.equals("postUpdate")) { // 내 문의글 수정
 			System.out.println("this is post update");
 			String pos_title = request.getParameter("pos_title");
 			String mem_no = request.getParameter("mem_no");
 			String pos_no = null;
-			/*title이랑 mem_no으로 검색해서 pos_no 알아내고
-			select pos_no from Posting where pos_no=""+pos_no and mem_no=""+mem_no;
-			pos_no으로 애들 다 받아와서 getString이랑? 비교해서 바뀐 애들만 update하기*/
-
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);

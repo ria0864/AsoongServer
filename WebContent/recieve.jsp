@@ -15,6 +15,10 @@
 </head>
 <body>
 	<%
+		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+		String serverName = "tauction";
+		String serverPW = "asoong";
+
 		String id = "";
 		String pw = "";
 
@@ -39,8 +43,7 @@
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
-
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				sql = "select mem_id,mem_pw from Member where mem_id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -85,7 +88,7 @@
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 
 				if (!id.equals("")) {
 
@@ -136,7 +139,7 @@
 			String mem_no = null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				stmt = conn.createStatement();
 
 				sql = "select mem_no from Member where mem_id=?";
@@ -168,7 +171,7 @@
 			String mem_no = request.getParameter("mem_no");
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 
 				sql = "insert into Posting (pos_date,pos_title,pos_contents,pos_num,pos_type,pos_gender,pos_trip,pos_budget,pos_convin,pos_startday,pos_endday,pos_pay) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sql);
@@ -191,16 +194,73 @@
 	<jsp:forward page="success.xml" />
 	<%
 		} else {
-			%>
-			<jsp:forward page="fail.xml" />
-			<%
-				}
+	%>
+	<jsp:forward page="fail.xml" />
+	<%
+		}
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 
-		} else if (action.equals("")) {
-			System.out.println("this is ");
+		} else if (action.equals("postRemove")) {
+			System.out.println("this is post remove");
+			String pos_title = request.getParameter("pos_title");
+			String mem_no = request.getParameter("mem_no");
+			String pos_no = null;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+
+				sql = "select pos_no from Posting where pos_title=? and mem_no=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pos_title);
+				pstmt.setString(2, mem_no);
+				rs = stmt.executeQuery(sql);
+				pos_no = rs.getString(1);
+
+				sql = "delete from Postring where pos_no=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pos_no);
+				boolean pf = stmt.execute(sql);
+				if (pf == true) {
+	%>
+	<jsp:forward page="success.xml" />
+	<%
+		} else {
+	%>
+	<jsp:forward page="fail.xml" />
+	<%
+		}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		} else if (action.equals("postUpdate")) {
+			System.out.println("this is post update");
+			String pos_title = request.getParameter("pos_title");
+			String mem_no = request.getParameter("mem_no");
+			String pos_no = null;
+			/*title이랑 mem_no으로 검색해서 pos_no 알아내고
+			select pos_no from Posting where pos_no=""+pos_no and mem_no=""+mem_no;
+			pos_no으로 애들 다 받아와서 getString이랑? 비교해서 바뀐 애들만 update하기*/
+
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+
+				sql = "select pos_no from Posting where pos_title=? and mem_no=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pos_title);
+				pstmt.setString(2, mem_no);
+				rs = stmt.executeQuery(sql);
+				pos_no = rs.getString(1);
+	%>
+	<jsp:forward page="mypostUpdate.jsp">
+		<jsp:param name="pos_no" value="<%=pos_no%>" />
+	</jsp:forward>
+	<%
+		} catch (Exception e) {
+				System.out.println(e);
+			}
 		}
 	%>
 

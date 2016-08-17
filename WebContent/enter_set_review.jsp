@@ -18,7 +18,7 @@
 	//<result>succuss</result>
 %>
 
-<result>success$<%
+<result>enter_set_review$<%
 
 	String mem_id="";	
 	Connection conn = null;

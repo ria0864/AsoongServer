@@ -13,7 +13,7 @@
 	//<result>succuss$기|업|정|보$기|업|정|보</result>
 %>
 
-<result>success$<%
+<result>enter_search$<%
 	
 	String enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
@@ -48,5 +48,6 @@
 	}
 	catch(Exception e) {
 		System.out.println(e);
+		%><jsp:forward page="fail.xml"/><%
 	}
 %></result> 

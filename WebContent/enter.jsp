@@ -9,8 +9,8 @@
 		
 		
 		- get_review 			: 해당업체 review목록 불러오기	[enter_name]	
-		- set_review			: review 등록		[enter_name, review_contents, mem_id] -> success.xml
-		- remove_review 		: review 삭제		[enter_name, mem_id] ->success.xml
+		- add_review			: review 등록		[enter_name, review_contents, mem_id] -> success.xml
+		- delete_review 		: review 삭제		[enter_name, mem_id] ->success.xml
 		-
 
 
@@ -112,6 +112,7 @@
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
 			}
 
 			%><jsp:forward page="enter_rank_region.jsp">
@@ -196,6 +197,7 @@
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
 			}
 			%><jsp:forward page="success.xml"/><%
 			
@@ -225,12 +227,13 @@
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
 			}
 			%><jsp:forward page="enter_get_review.jsp">
 			<jsp:param name="enter_no" value="<%=enter_no%>"/>
 			</jsp:forward><%
 			
-		}else if(action.equals("set_review")){
+		}else if(action.equals("add_review")){
 			
 			enter_name = request.getParameter("enter_name");
 			enter_name = request.getParameter("review_contents");
@@ -292,10 +295,11 @@
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
 			}
 			%><jsp:forward page="success.xml"/><%
 					
-		}else if(action.equals("remove_review")){
+		}else if(action.equals("delete_review")){
 			
 			enter_name = request.getParameter("enter_name");
 			mem_id = request.getParameter("mem_id");
@@ -357,6 +361,7 @@
 			}
 			catch(Exception e) {
 				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
 			}
 		}
 			

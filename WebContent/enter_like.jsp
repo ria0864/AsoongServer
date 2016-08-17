@@ -15,4 +15,4 @@
 	
 %>
 
-<result>success$<%=enter_like_num%>|<%=enter_like%></result> 
+<result>enter_like$<%=enter_like_num%>|<%=enter_like%></result> 

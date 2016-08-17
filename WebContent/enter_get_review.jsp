@@ -14,7 +14,7 @@
 	String review_date, review_contents, mem_no, mem_id="";
 %>
 
-<result>success$<%
+<result>enter_get_review$<%
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -56,5 +56,6 @@
 	}
 	catch(Exception e) {
 		System.out.println(e);
+		%><jsp:forward page="fail.xml"/><%
 	}
 %></result> 

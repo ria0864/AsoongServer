@@ -15,6 +15,10 @@
 </head>
 <body>
 	<%
+	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverName = "tauction";
+	String serverPW = "asoong";
+	
 		String id = "";
 		String pw = "";
 
@@ -39,7 +43,7 @@
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 
 				sql = "select mem_id,mem_pw from Member where mem_id=?";
 				pstmt = conn.prepareStatement(sql);
@@ -85,7 +89,7 @@
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 
 				if (!id.equals("")) {
 
@@ -133,7 +137,7 @@
 			String pos_pay = null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				stmt = conn.createStatement();
 
 				sql = "select mem_no from Member where mem_id=?";
@@ -179,7 +183,7 @@
 			String pos_pay = request.getParameter("pos_pay");
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://52.78.15.170/tauctionDB", "tauction", "asoong");
+				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 
 				sql = "insert into Posting (pos_date,pos_title,pos_contents,pos_num,pos_type,pos_gender,pos_trip,pos_budget,pos_convin,pos_startday,pos_endday,pos_pay) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sql);
@@ -204,7 +208,7 @@
 		} else if (action.equals("")) {
 			System.out.println("this is ");
 		}
-	%>ㄹ
+	%>
 
 </body>
 </html>

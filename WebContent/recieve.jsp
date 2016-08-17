@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%
-		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB"; //흠?
 		String serverName = "tauction";
 		String serverPW = "asoong";
 

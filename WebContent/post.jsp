@@ -137,4 +137,9 @@
 				<jsp:param name="mem_no" value="<%=mem_no%>" />
 			</jsp:forward>
 			<%
-		}
+		}else if(action.equals("post_list")){
+		%>
+			<jsp:forward page="post_list.jsp">
+			</jsp:forward>
+			<%
+			}

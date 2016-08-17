@@ -43,7 +43,7 @@
 			sql = "select mem_id from Member where mem_no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,enter_no);
-			ResultSet rs2 = pstmt.executeQuery();
+			ResultSet rs2 = pstmt.executeQuery();//hello
 			
 			if(rs2.next()){
 				System.out.println(rs2.getString(1));//mem_id

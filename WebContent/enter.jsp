@@ -104,11 +104,12 @@
 				Class.forName("com.mysql.jdbc.Driver");
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 				
-				sql="select reg_no from Region where reg_name ='?'";
+				sql="select reg_no from Region where reg_name =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,reg_name);
 				rs = pstmt.executeQuery();
 				
+				System.out.println("sql쿼리문실행끝남");
 				if(rs.next()){
 					System.out.println("DB에서 가져온 업체no");
 					System.out.println(rs.getString(1));//no

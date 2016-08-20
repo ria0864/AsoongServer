@@ -67,8 +67,8 @@
 					ask_endday += rs.getString(13) + "|";
 					ask_pay += rs.getString(14) + "|";
 					mem_no += rs.getString(15) + "|" + "$";
-%><%=ask_no%><%=ask_date%><%=ask_title%><%=ask_contents%><%=reg_no%><%=ask_num%><%=ask_type%><%=ask_gender%><%=ask_trip%><%=ask_budget%><%=ask_convin%><%=ask_startday%><%=ask_endday%><%=ask_pay%><%=mem_no%>
-<%
+%><context><%=ask_no%><%=ask_date%><%=ask_title%><%=ask_contents%><%=reg_no%><%=ask_num%><%=ask_type%><%=ask_gender%><%=ask_trip%><%=ask_budget%><%=ask_convin%><%=ask_startday%><%=ask_endday%><%=ask_pay%><%=mem_no%>
+</context><%
 	}
 			} catch (Exception e) {
 %> <jsp:forward page="fail.xml" /> <%

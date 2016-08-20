@@ -2,9 +2,9 @@
 		**enterprise 업체관련 요청받는 main**
 		
 		- enter_search 			: 업체 검색		[enter_name]
-		- enter_search_filter	: 업체 필터검색	[아직안함!!!!필터뭐잇는지몰라~~]
-		- enter_rank			: 업체 랭킹		[없음]
-		- enter_rank_region		: 지역별 업체 랭킹 [region]
+		- enter_search_filter	: 업체 필터검색	[reg_name, enter_type, enter_convin, enter_pay]
+		- enter_rank			: 업체 랭킹		[reg_name,enter_type, enter_convin, enter_]
+		- enter_rank_region		: 지역별 업체 랭킹 [reg_name]
 		- enter_like			: 업체좋아요수 & 내가 좋아요하는지 [enter_name, mem_id]
 		
 		
@@ -53,6 +53,9 @@
 		String reg_no="";
 		String enter_like_num="";
 		boolean enter_like = false;
+		String enter_type = "";
+		String enter_convin ="";
+		String enter_pay = "";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -61,8 +64,8 @@
 
 		request.setCharacterEncoding("utf-8");
 
-//		String action = request.getParameter("action");
-		String action = "enter_search";
+		String action = request.getParameter("action");
+//		String action = "enter_search";
 		System.out.println(action);
 
 		if (action == null) {
@@ -78,9 +81,14 @@
 				
 		} else if (action.equals("enter_search_filter")) {
 
-			
-			//아직못함 필터를모름
-			
+			reg_name = request.getParameter("reg_name");
+			enter_type = request.getParameter("enter_type");
+			enter_convin =request.getParameter("enter_convin");
+			enter_pay = request.getParameter("enter_pay");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
 			
 				
 		} else if (action.equals("enter_rank")) {
@@ -107,7 +115,9 @@
 					
 					reg_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+%>					
+					<jsp:forward page="fail.xml"/>
+<%					
 				}
 			}
 			catch(Exception e) {
@@ -141,7 +151,7 @@
 					
 					enter_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql="select mem_no from Member where mem_id =?";
@@ -155,7 +165,7 @@
 					
 					mem_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql="select enter_like_no from EnterLike where mem_no =? and enter_no=?";
@@ -186,7 +196,7 @@
 					
 					enter_like_num = rs.getString(1);	
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				%><jsp:forward page="enter_like.jsp">
@@ -222,7 +232,7 @@
 					
 					enter_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 			}
 			catch(Exception e) {
@@ -257,7 +267,7 @@
 					
 					enter_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql="select mem_no from Member where mem_id =?";
@@ -271,7 +281,7 @@
 					
 					mem_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				df = new SimpleDateFormat("yyyy-MM-dd");
@@ -321,7 +331,7 @@
 					
 					enter_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql="select mem_no from Member where mem_id =?";
@@ -335,7 +345,7 @@
 					
 					mem_no = rs.getString(1);			
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql="select review_no from Review where mem_no =? and enter=?";
@@ -349,7 +359,7 @@
 					
 					review_no = rs.getString(1);		
 				}else{
-					%><jsp:forward page="fail.xml"><%					
+					%><jsp:forward page="fail.xml"/><%					
 				}
 				
 				sql = "delete from Review where review_no=?";

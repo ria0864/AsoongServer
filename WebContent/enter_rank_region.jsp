@@ -9,10 +9,10 @@
 	
 	String reg_no = request.getParameter("reg_no");
 	System.out.println(reg_no);
-	//<result>succuss$기|업|정|보$기|업|정|보</result>
+	//<result>enter_rank_region/기|업|정|보$기|업|정|보</result>
 %>
 
-<result>enter_rank_region$<%
+<result>enter_rank_region/<%
 	
 	String enter_name, enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;

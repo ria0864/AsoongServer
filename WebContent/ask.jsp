@@ -143,7 +143,6 @@
 	%>
 	<jsp:forward page="ask_list.jsp">
 		<jsp:param name="reg_name" value="<%=reg_name%>" />
-	</jsp:forward>
-	<%
+	</jsp:forward><%
 		}
-	
+	%>

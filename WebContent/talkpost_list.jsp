@@ -44,17 +44,18 @@
 		}
 	}
 %>
-<?xml version="1.0" encoding="UTF=8"?>
-<portfolio>
-	<% while(folio.hasNext()) {
+<?xml version="1.0" encoding="UTF-8"?>
+	<portfolio>
+		<% while(folio.hasNext()) {
 		postList = (TalkPostList)folio.next();
-	%>
-	<postlist>
-		<talkpost_no><%=postList.getTalkpost_no()%></talkpost_no>
-		<talkpost_type><%=postList.getTalkpost_type()%></talkpost_type>
-		<talkpost_date><%=postList.getTalkpost_date()%></talkpost_date>
-		<talkpost_title><%=postList.getTalkpost_title()%></talkpost_title>
-		<mem_id><%=postList.getMem_id()%></mem_id>
-	</postlist>
-	<% } %>
-</portfolio>
+		System.out.println("export xml : " + postList.getTalkpost_no());
+		%>
+		<postlist>
+			<talkpost_no><%=postList.getTalkpost_no()%></talkpost_no>
+			<talkpost_type><%=postList.getTalkpost_type()%></talkpost_type>
+			<talkpost_date><%=postList.getTalkpost_date()%></talkpost_date>
+			<talkpost_title><%=postList.getTalkpost_title()%></talkpost_title>
+			<mem_id><%=postList.getMem_id()%></mem_id>
+		</postlist>
+		<% } %>
+	</portfolio>

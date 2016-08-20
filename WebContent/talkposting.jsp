@@ -18,7 +18,7 @@
 	java.util.Iterator folio = portfolio.getPortfolio();
 	TalkPosting posting = null;
 	
-	request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("UTF-8");
 	String action = request.getParameter("action");
 	System.out.println(action);
 	
@@ -44,7 +44,7 @@
 		}
 	}
 %>
-<?xml version="1.0" encoding="UTF=8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <portfolio>
 	<% while(folio.hasNext()) {
 		posting = (TalkPosting)folio.next();

@@ -44,6 +44,7 @@
 
 		if (reg_name.equals("전체")) {
 			try {
+				%> <jsp:forward page="fail.xml" /> <%
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				sql = "select * from Ask";

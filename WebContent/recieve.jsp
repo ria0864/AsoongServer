@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%
-		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB"; //흠?
+		String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB"; //흠?
 		String serverName = "tauction";
 		String serverPW = "asoong";
 
@@ -42,7 +42,7 @@
 			System.out.println(pw);
 
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				sql = "select mem_id,mem_pw from Member where mem_id=?";
 				pstmt = conn.prepareStatement(sql);

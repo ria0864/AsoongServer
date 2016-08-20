@@ -4,13 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	String reg_name = request.getParameter("reg_name");
 %>
 <result>ask_list$<%
 	System.out.println("this is ask list!");
+	System.out.println(reg_name);
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -31,20 +32,29 @@
 	String ask_endday = null;
 	String ask_pay = null;
 	String mem_no = null;
-
+	String tf ="전체";
+	if(tf.equals(reg_name))	System.out.println(tf);
+	
 	try {
-
+		System.out.println("1");
 		Class.forName("com.mysql.jdbc.Driver");
+		System.out.println("2");
 		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+		System.out.println("3");
 		sql = "select reg_no from Region where reg_name=?";
+		System.out.println("4");
 		pstmt = conn.prepareStatement(sql);
+		System.out.println("5");
 		pstmt.setString(1, reg_name);
+		System.out.println("6");
 		rs = pstmt.executeQuery(sql);
+		System.out.println("7");
 		reg_no = rs.getString(1);
-
+		System.out.println("8");
+			%><jsp:forward page="fail.xml"/><%
+		
 		if (reg_name.equals("전체")) {
 			try {
-				%> <jsp:forward page="fail.xml" /> <%
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				sql = "select * from Ask";
@@ -54,6 +64,7 @@
 				while (rs.next()) {
 					System.out.println(rs.getString(1));
 					ask_no += rs.getString(1) + "|";
+					System.out.println(ask_no);
 					ask_date += rs.getString(2) + "|";
 					ask_title += rs.getString(3) + "|";
 					ask_contents += rs.getString(4) + "|";
@@ -72,8 +83,8 @@
 </context><%
 	}
 			} catch (Exception e) {
-%> <jsp:forward page="fail.xml" /> <%
- 	System.out.println(e.toString());
+			%> <jsp:forward page="fail.xml" /> <%
+ 				System.out.println(e.toString());
  			}
  		} else {
  			try {
@@ -114,4 +125,4 @@
  	rs.close();
  	pstmt.close();
  	conn.close();
- %> </result>
+ %></result>

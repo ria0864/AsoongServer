@@ -19,7 +19,7 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	
-	System.out.println("enter_rank_region.jsp시작");
+	System.out.println("enter_rank_region.jsp시작dd");
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

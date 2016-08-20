@@ -33,7 +33,7 @@
 <body>
 
 	<%
-		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+		String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 		String serverName = "tauction";
 		String serverPW = "asoong";
 		
@@ -103,10 +103,19 @@
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
-				
+				System.out.println("11");
+
 				sql="select reg_no from Region where reg_name ='?'";
+				System.out.println("22");
+
 				pstmt = conn.prepareStatement(sql);
+				
+				System.out.println("33");
+
 				pstmt.setString(1,reg_name);
+				
+				System.out.println("44");
+
 				rs = pstmt.executeQuery();
 				
 				System.out.println("sql쿼리문실행끝남");

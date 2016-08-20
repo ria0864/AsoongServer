@@ -45,9 +45,9 @@
 		rs = pstmt.executeQuery(sql);
 		reg_no = rs.getString(1);
 
-		if (reg_name.equals(tf)) {
+		if (!reg_name.equals(tf)) {
 			System.out.println("Same sentence");
-			%> <jsp:forward page="fail.jsp"/><%
+			%><jsp:forward page="fail.xml"/><%
 		}
 		if (reg_name.equals("전체")) {
 			try {

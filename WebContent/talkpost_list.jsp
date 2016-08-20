@@ -23,6 +23,7 @@
 			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_title like ? and talkpost_type = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+talkpost_title+"%");
+			pstmt.setString(2, talkpost_type);
 			rs = pstmt.executeQuery(sql);
 			
 			while(rs.next()) {

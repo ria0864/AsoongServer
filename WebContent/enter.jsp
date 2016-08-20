@@ -104,7 +104,7 @@
 				Class.forName("com.mysql.jdbc.Driver");
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 				
-				sql="select reg_no from Region where reg_name =?";
+				sql="select reg_no from Region where reg_name ='?'";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,reg_name);
 				rs = pstmt.executeQuery();

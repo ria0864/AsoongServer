@@ -38,7 +38,7 @@
 			System.out.println(rs.getString(4));//phone
 			System.out.println(rs.getString(5));//like
 			
-			enter_name = rs.getString(2);
+			enter_name = rs.getString(2); 
 			enter_addr = rs.getString(3);
 			enter_phone = rs.getString(4);
 			enter_like = rs.getString(5);

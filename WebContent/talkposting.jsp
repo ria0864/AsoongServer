@@ -1,10 +1,4 @@
-<%@ page contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="tauction.TalkPosting"%>
-<%@ page import="tauction.PostingPortfolio"%>
-<%@page import="java.sql.*"%>
-<%@page import="com.mysql.*" %>
-<jsp:useBean id="portfolio" class="tauction.PostingPortfolio"/>
-<%
+<%@ page contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8"%><%@ page import="tauction.TalkPosting"%><%@ page import="tauction.PostingPortfolio"%><%@page import="java.sql.*"%><%@page import="com.mysql.*" %><jsp:useBean id="portfolio" class="tauction.PostingPortfolio"/><%
 	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB"; //흠?
 	String serverName = "tauction";
 	String serverPW = "asoong";
@@ -31,7 +25,7 @@
 			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, talkpost_content, mem_no, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, talkpost_no);
-			rs = stmt.executeQuery(sql);
+			rs = pstmt.executeQuery(sql);
 			
 			while(rs.next()) {
 				portfolio.addElement(rs.getInt("talkpost_no"), rs.getString("talkpost_type"), rs.getString("talkpost_date"),
@@ -43,11 +37,12 @@
 			e.printStackTrace();
 		}
 	}
-%>
-<?xml version="1.0" encoding="UTF-8"?>
+%><?xml version="1.0" encoding="UTF-8"?>
 <portfolio>
 	<% while(folio.hasNext()) {
-		posting = (TalkPosting)folio.next();
+		synchronized(posting) {
+			posting = (TalkPosting)folio.next();
+		}
 	%>
 	<posting>
 		<talkpost_no><%=posting.getTalkpost_no()%></talkpost_no>

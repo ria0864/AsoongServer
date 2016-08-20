@@ -105,7 +105,7 @@
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 				System.out.println("11");
 
-				sql="select reg_no from Region where reg_name ='?'";
+				sql="select reg_no from Region where reg_name =?";
 				System.out.println("22");
 
 				pstmt = conn.prepareStatement(sql);

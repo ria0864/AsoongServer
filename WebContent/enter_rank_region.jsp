@@ -7,7 +7,8 @@
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	
-	String reg_no = request.getParameter("reg_no");
+//	String reg_no = request.getParameter("reg_no");
+	String reg_no = "3";
 	System.out.println(reg_no);
 	//<result>enter_rank_region/기|업|정|보$기|업|정|보</result>
 %>

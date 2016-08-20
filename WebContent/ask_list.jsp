@@ -10,7 +10,7 @@
 	String reg_name = request.getParameter("reg_name");
 	System.out.println(reg_name);
 %>
-<result>ask_list<%
+<result>ask_list|<%
 	System.out.println("this is ask list!");
 	String sql = "";
 	Connection conn = null;

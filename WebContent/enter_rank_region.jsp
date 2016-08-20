@@ -14,7 +14,7 @@
 %>
 
 <result>enter_rank_region/<%
-	
+	 
 	String enter_name, enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
 	PreparedStatement pstmt = null;

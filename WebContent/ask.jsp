@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%
-		String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 		String serverName = "tauction";
 		String serverPW = "asoong";
 

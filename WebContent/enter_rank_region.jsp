@@ -18,6 +18,7 @@
 	String enter_name, enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
 	PreparedStatement pstmt = null; 
+	ResultSet rs = null;
 	
 	System.out.println("enter_rank_region.jsp시작dd");
 	
@@ -25,10 +26,17 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
-		String sql="select * from Enterprise where reg_no=? order by enter_like desc";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,reg_no);
-		ResultSet rs = pstmt.executeQuery();
+		if(reg_no.equals("1")){
+			String sql="select * from Enterprise order by enter_like desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+		}else{
+			
+			String sql="select * from Enterprise where reg_no=? order by enter_like desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,reg_no);
+			rs = pstmt.executeQuery();
+		}
 		
 		while(rs.next()){
 			System.out.println("DB에서 가져온 업체정보");

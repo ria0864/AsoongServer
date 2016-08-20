@@ -37,6 +37,7 @@
 	if(tf.equals(reg_name))	System.out.println(tf);
 	
 	try {
+		System.out.println("start");
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 		sql = "select reg_no from Region where reg_name=?";

@@ -29,7 +29,7 @@
 	String ask_pay = request.getParameter("ask_pay");
 	System.out.println(ask_no);
 %>
-<result>ask_update<%
+<result>ask_update$<%
 
 	System.out.println("this is my ask update!");
 

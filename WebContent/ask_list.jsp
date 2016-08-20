@@ -36,19 +36,23 @@
 	if(tf.equals(reg_name))	System.out.println(tf);
 	
 	try {
-
+		System.out.println("1");
 		Class.forName("com.mysql.jdbc.Driver");
+		System.out.println("2");
 		conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+		System.out.println("3");
 		sql = "select reg_no from Region where reg_name=?";
+		System.out.println("4");
 		pstmt = conn.prepareStatement(sql);
+		System.out.println("5");
 		pstmt.setString(1, reg_name);
+		System.out.println("6");
 		rs = pstmt.executeQuery(sql);
+		System.out.println("7");
 		reg_no = rs.getString(1);
-
-		if (!reg_name.equals(tf)) {
-			System.out.println("Same sentence");
+		System.out.println("8");
 			%><jsp:forward page="fail.xml"/><%
-		}
+		
 		if (reg_name.equals("전체")) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");

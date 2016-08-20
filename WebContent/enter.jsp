@@ -4,7 +4,7 @@
 		- enter_search 			: 업체 검색		[enter_name]
 		- enter_search_filter	: 업체 필터검색	[reg_name, enter_type, enter_convin, enter_pay]
 		- enter_rank			: 업체 랭킹		[reg_name,enter_type, enter_convin, enter_]
-		- enter_rank_region		: 지역별 업체 랭킹 [region]
+		- enter_rank_region		: 지역별 업체 랭킹 [reg_name]
 		- enter_like			: 업체좋아요수 & 내가 좋아요하는지 [enter_name, mem_id]
 		
 		

@@ -8,16 +8,19 @@
 	String serverPW = "asoong";
 	
 	String reg_no = request.getParameter("reg_no");
+//	String reg_no = "3";
 	System.out.println(reg_no);
-	//<result>succuss$기|업|정|보$기|업|정|보</result>
-%>
+	//<result>enter_rank_region/기|업|정|보$기|업|정|보</result>
+%> 
 
-<result>enter_rank_region$<%
-	
+<result>enter_rank_region/<%
+	 
 	String enter_name, enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
-	PreparedStatement pstmt = null;
-		
+	PreparedStatement pstmt = null; 
+	
+	System.out.println("enter_rank_region.jsp시작dd");
+	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);

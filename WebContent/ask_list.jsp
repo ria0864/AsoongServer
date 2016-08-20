@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	String reg_name = request.getParameter("reg_name");

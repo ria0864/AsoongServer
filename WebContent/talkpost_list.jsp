@@ -5,7 +5,7 @@
 <%@page import="com.mysql.*" %>
 <jsp:useBean id="portfolio" class="tauction.PostListPortfolio"/>
 <%
-	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB"; //흠?
+	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB"; //흠?
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	

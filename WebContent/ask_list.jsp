@@ -77,8 +77,8 @@
 					ask_endday += rs.getString(14).toString();
 					ask_pay += rs.getString(15);
 					mem_no += rs.getInt(16);
-%><context><%=ask_no%>|<%=ask_date%>|<%=ask_title%>|<%=ask_contents%>|<%=reg_no%>|<%=ask_num%>|<%=ask_type%>|<%=ask_gender%>|<%=ask_trip%>|<%=ask_budget%>|<%=ask_convin%>|<%=ask_startday%>|<%=ask_endday%>|<%=ask_pay%>|<%=mem_no%>
-$</context><%
+%><%=ask_no%>|<%=ask_date%>|<%=ask_title%>|<%=ask_contents%>|<%=reg_no%>|<%=ask_num%>|<%=ask_type%>|<%=ask_gender%>|<%=ask_trip%>|<%=ask_budget%>|<%=ask_convin%>|<%=ask_startday%>|<%=ask_endday%>|<%=ask_pay%>|<%=mem_no%>
+$<%
 	}
 				%> <jsp:forward page="success.xml" /> <%
 			} catch (Exception e) {

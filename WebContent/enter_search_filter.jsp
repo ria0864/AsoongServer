@@ -26,11 +26,11 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
-		String sql="select * from Enterprise where reg_no=? and enter_type=? and enter_convin=?";
+		String sql="select * from Enterprise where reg_no='"+reg_no+ "'and enter_type='"+enter_type+"' and enter_convin='"+enter_convin+"";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,reg_no);
+/* 		pstmt.setString(1,reg_no);
 		pstmt.setString(2,enter_type);
-		pstmt.setString(3,enter_convin);
+		pstmt.setString(3,enter_convin); */
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()){

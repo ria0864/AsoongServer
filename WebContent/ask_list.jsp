@@ -81,10 +81,10 @@
 				while (rs.next()) {
 					System.out.println("while문 진입 : "+rs.getString(1));
 
-					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getDate(3).toString(),
+					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getString(3),
 							rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12),
-							rs.getString(13).toString(), rs.getString(14).toString(), rs.getString(15),
+							rs.getDate(13), rs.getDate(14), rs.getString(15),
 							rs.getInt(16));
 				}
 				System.out.println("while문 빠져나옴");
@@ -104,10 +104,10 @@
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					System.out.println(rs.getString(1));
-					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getDate(3).toString(),
+					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getString(3),
 							rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12),
-							rs.getString(13).toString(), rs.getString(14).toString(), rs.getString(15),
+							rs.getDate(13), rs.getDate(14), rs.getString(15),
 							rs.getInt(16));
 					/*System.out.println(rs.getString(1));
 					ask_no += rs.getInt(1);

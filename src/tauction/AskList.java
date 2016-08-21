@@ -16,14 +16,14 @@ public class AskList implements Serializable {
 	private String ask_trip;
 	private int ask_budget;
 	private String ask_convin;
-	private String ask_startday;
-	private String ask_endday;
+	private Date ask_startday;
+	private Date ask_endday;
 	private String ask_pay;
 	private int mem_no;
 
 	public AskList(int ask_no, Date ask_date, String ask_title, String ask_contents, int done, int reg_no,
 			int ask_num, String ask_type, String ask_gender, String ask_trip, int ask_budget, String ask_convin,
-			String ask_startday, String ask_endday, String ask_pay, int mem_no) {
+			Date ask_startday, Date ask_endday, String ask_pay, int mem_no) {
 		this.ask_no = ask_no;
 		this.ask_date = ask_date;
 		this.ask_title = ask_title;
@@ -90,11 +90,11 @@ public class AskList implements Serializable {
 		return ask_convin;
 	}
 
-	public String getAsk_startday() {
+	public Date getAsk_startday() {
 		return ask_startday;
 	}
 
-	public String getAsk_endday() {
+	public Date getAsk_endday() {
 		return ask_endday;
 	}
 

@@ -52,7 +52,7 @@
 			
 		%><%=mem_id%>|<%=review_date%>|<%=review_contents%>|<%				
 		}
-		System.out.println("while문 나옴");
+		System.out.println("while문 나옴"); 
 	}
 	catch(Exception e) {
 		System.out.println(e);

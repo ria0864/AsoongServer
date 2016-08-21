@@ -26,7 +26,7 @@
 	
 	if(action != null && action.equals("addTalkPosting")) {
 		System.out.println("this is to add talk posting");
-		int talkpost_no;
+		int talkpost_no = 0;
 		String talkpost_type = request.getParameter("type");
 		String talkpost_date = request.getParameter("date");
 		String talkpost_title = request.getParameter("title");
@@ -41,33 +41,40 @@
 			sql = "select count(*) from TalkPosting";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
-			rs.next();
-			talkpost_no = rs.getInt(1)+1;
-			
-			if(mem_id == null) {
-				mem_id = "Anonymous";
-				%>
-				<jsp:forward page="success.xml" />
-				<%
+			if(rs.next()) {
+				talkpost_no = rs.getInt(1)+1;
 			}
-			sql = "select mem_no from Member where mem_id = '" + mem_id + "'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(sql);
-			rs.next();
-			mem_no = rs.getInt(1);
 			
-			// insert posting
-			String values = talkpost_no+",'"+talkpost_type+"','"+talkpost_date+"','"+talkpost_title+"','"+talkpost_content+"',"+mem_no;  
-			sql = "insert into TalkPosting (talkpost_no, talkpost_type, talkpost_date, talkpost_title, talkpost_contents, mem_no) values ("+values+")";
-			pstmt = conn.prepareStatement(sql);
-			boolean pf = pstmt.execute(sql);
-			if (pf == false) {
-		%>
-		<jsp:forward page="success.xml" />
-		<%	} else {
-		%>
-		<jsp:forward page="fail.xml" />
-		<%
+			if(mem_id == null || mem_id.equals("Anonymous")) {
+				%>
+				<jsp:forward page="no_login.xml" />
+				<%
+			} else {
+				
+				System.out.println("mem_id : " + mem_id);
+				sql = "select mem_no from Member where mem_id = '" + mem_id + "'";
+				System.out.println(sql);
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery(sql);
+				if(rs.next()) {
+					mem_no = rs.getInt(1);
+				}
+				System.out.println("mem_no : " + mem_no);
+				
+				// insert posting
+				String values = talkpost_no+",'"+talkpost_type+"','"+talkpost_date+"','"+talkpost_title+"','"+talkpost_content+"',"+mem_no;  
+				sql = "insert into TalkPosting (talkpost_no, talkpost_type, talkpost_date, talkpost_title, talkpost_contents, mem_no) values ("+values+")";
+				pstmt = conn.prepareStatement(sql);
+				boolean pf = pstmt.execute(sql);
+			
+				if (pf == false) {
+			%>
+			<jsp:forward page="success.xml" />
+			<%	} else {
+			%>
+			<jsp:forward page="fail.xml" />
+			<%
+				}
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -51,7 +51,7 @@
 			enter_phone = rs.getString(4);
 			enter_like = rs.getString(5);
 			enter_intro = rs.getString(6);
-			enter_image = rs.getString(10);
+			enter_image = rs.getString(11);
 			
 		%><%=enter_name%>|<%=enter_addr%>|<%=enter_like%>|<%=enter_image%>$<%
 		}

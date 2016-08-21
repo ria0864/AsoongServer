@@ -232,13 +232,8 @@
 			like = request.getParameter("like");
 			System.out.println(enter_name);
 			System.out.println(mem_id);
-			System.out.println(like);
+			System.out.println("like=>"+like);
 			
-			if(like.equals("like")){//컬럼추가
-				
-			}else{//컬럼삭제
-				
-			}
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
@@ -269,13 +264,23 @@
 				}else{
 					%><jsp:forward page="fail.xml"/><%					
 				}
-				sql = "insert into EnterLike(mem_no, enter_no) values(?,?)";
-				pstmt = conn.prepareStatement(sql);
-		 
-		 		pstmt.setString(1,mem_no);
-				pstmt.setString(2,enter_no);
-				pstmt.executeUpdate();
-				%><jsp:forward page="success.xml"/><%
+				if(like.equals("like")){
+					sql = "insert into EnterLike(mem_no, enter_no) values(?,?)";
+					pstmt = conn.prepareStatement(sql);
+			 
+			 		pstmt.setString(1,mem_no);
+					pstmt.setString(2,enter_no);
+					pstmt.executeUpdate();
+					%><jsp:forward page="success.xml"/><%
+				}else{
+					sql = "delete from EnterLike where mem_no=? and enter_no=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, mem_no);
+					pstmt.setString(1, enter_no);
+					pstmt.executeUpdate();
+					%><jsp:forward page="success.xml"/><% 
+				}
+						
 			}
 			catch(Exception e) {
 				System.out.println(e);

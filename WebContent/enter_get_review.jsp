@@ -50,7 +50,7 @@
 				mem_id = rs2.getString(1);
 			}
 			
-		%><%=mem_id%>|<%=review_date%>|<%=review_contents%>|<%				
+		%><%=mem_id%>|<%=review_date%>|<%=review_contents%>$<%				
 		}
 		System.out.println("while문 나옴"); 
 	}

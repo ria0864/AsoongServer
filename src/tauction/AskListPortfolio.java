@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class AskListPortfolio implements Serializable {
 	private List<AskList> portfolio = Collections.synchronizedList(new ArrayList<AskList>());
 

@@ -145,5 +145,7 @@
 	<jsp:forward page="ask_list.jsp">
 		<jsp:param name="reg_name" value="<%=reg_name%>" />
 	</jsp:forward><%
+		}else if(action.equals("ask_content")){
+			%><jsp:forward page="ask_content.jsp"/><%
 		}
 	%>

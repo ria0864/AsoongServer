@@ -1,10 +1,4 @@
-<%@ page contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="tauction.AskList"%>
-<%@ page import="tauction.AskListPortfolio"%>
-<%@page import="java.sql.*"%>
-<%@page import="com.mysql.*"%>
-<jsp:useBean id="portfolio" class="tauction.AskListPortfolio" />
-<%
+<%@ page contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8"%><%@ page import="tauction.AskList"%><%@ page import="tauction.AskListPortfolio"%><%@page import="java.sql.*"%><%@page import="com.mysql.*"%><jsp:useBean id="portfolio" class="tauction.AskListPortfolio" /><%
 	System.out.println("This it ask_list.jsp");
 	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
@@ -86,8 +80,7 @@
 				}
 				System.out.println("while문 빠져나옴");
 			} catch (Exception e) {
-%><jsp:forward page="fail.xml" />
-<%
+%><jsp:forward page="fail.xml" /><%
 	System.out.println("fail");
 				System.out.println(e.toString());
 			}
@@ -125,8 +118,7 @@
 
 				}
 			} catch (Exception e) {
-%><jsp:forward page="fail.xml" />
-<%
+%><jsp:forward page="fail.xml" /><%
 	System.out.println(e.toString());
 			}
 		}
@@ -134,12 +126,10 @@
 		pstmt.close();
 		conn.close();
 	} catch (Exception e) {
-%><jsp:forward page="fail.xml" />
-<%
+%><jsp:forward page="fail.xml" /><%
 	System.out.println(e.toString());
 	}
-%>
-<?xml version="1.0" encoding="UTF-8"?>
+%><?xml version="1.0" encoding="UTF-8"?>
 <portfolio> 
 	<% java.util.List<AskList> folio = portfolio.getPortfolio();
 	java.util.Iterator<AskList> iter = folio.iterator();

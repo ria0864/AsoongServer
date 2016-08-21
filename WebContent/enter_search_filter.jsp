@@ -16,7 +16,7 @@
 	//<result>enter_search$기|업|정|보$기|업|정|보</result>
 %>
 
-<result>enter_search/<%
+<result>enter_search_filter/<%
 	
 	String enter_name,enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;

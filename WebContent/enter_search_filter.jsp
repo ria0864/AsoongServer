@@ -13,7 +13,7 @@
 	System.out.println(reg_no);
 	System.out.println(enter_type);
 	System.out.println(enter_convin);
-	//<result>enter_search$기|업|정|보$기|업|정|보</result>
+	//<result>enter_search$기|업|정|보$기|업|정|보</result>  
 %>
 
 <result>enter_search_filter/<%  

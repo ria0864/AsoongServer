@@ -84,7 +84,7 @@
 			</jsp:forward><%
 				
 		} else if (action.equals("enter_search_filter")) {
-
+  
 			reg_no = request.getParameter("reg_no");
 			enter_type = request.getParameter("enter_type");
 			enter_convin =request.getParameter("enter_convin");

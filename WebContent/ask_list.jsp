@@ -61,25 +61,33 @@
 			reg_no = rs.getInt(1);
 		}
 
+		if (reg_name.equals("all")) System.out.println("같아요~~~");
+		
 		if (reg_name.equals("all")) {
 			try {
+				System.out.println("같아요~~~");
 				Class.forName("com.mysql.jdbc.Driver");
+				System.out.println("1");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+				System.out.println("2");
 				sql = "select * from Ask";
+				System.out.println("3");
 				//stmt = conn.createStatement();
 				//rs = stmt.executeQuery();
 				pstmt = conn.prepareStatement(sql);
+				System.out.println("4");
 				rs = pstmt.executeQuery();
+				System.out.println("5");
 				while (rs.next()) {
-					System.out.println(rs.getString(1));
+					System.out.println("while문 진입 : "+rs.getString(1));
 
 					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getDate(3).toString(),
 							rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12),
 							rs.getString(13).toString(), rs.getString(14).toString(), rs.getString(15),
 							rs.getInt(16));
-					
 				}
+				System.out.println("while문 빠져나옴");
 			} catch (Exception e) {
 				%><jsp:forward page="fail.xml" />
 				<%
@@ -124,15 +132,14 @@
 				%><jsp:forward page="fail.xml" /><%
 				System.out.println(e.toString());
 			}
-		}
-	} catch (Exception e) {
-%>
-<jsp:forward page="fail.xml" />
-<%
-	}
+		} 
 	rs.close();
 	pstmt.close();
 	conn.close();
+	}catch (Exception e) {
+	%><jsp:forward page="fail.xml" /><%
+	System.out.println(e.toString());
+}
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <portfolio>

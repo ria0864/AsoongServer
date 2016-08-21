@@ -146,6 +146,13 @@
 		<jsp:param name="reg_name" value="<%=reg_name%>" />
 	</jsp:forward><%
 		}else if(action.equals("ask_content")){
-			%><jsp:forward page="ask_content.jsp"/><%
+			String ask_no = request.getParameter("ask_no");
+			String mem_id = request.getParameter("mem_id");
+			System.out.println("ask.jsp¿¡¼­ÀÇ ask_no = "+ask_no);
+			%>
+			<jsp:forward page="ask_content.jsp">
+				<jsp:param name="ask_no" value="<%=ask_no%>" />
+				<jsp:param name="mem_id" value="<%=mem_id%>" />
+			</jsp:forward><%
 		}
 	%>

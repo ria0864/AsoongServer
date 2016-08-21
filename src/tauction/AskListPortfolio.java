@@ -10,11 +10,10 @@ import java.util.List;
 public class AskListPortfolio implements Serializable {
 	private List<AskList> portfolio = Collections.synchronizedList(new ArrayList<AskList>());
 
-	public void addElement(int ask_no, Date ask_date, String ask_title, String ask_contents, int done, int reg_no,
-			int ask_num, String ask_type, String ask_gender, String ask_trip, int ask_budget, String ask_convin,
-			Date ask_startday, Date ask_endday, String ask_pay, int mem_no) {
-		portfolio.add(new AskList(ask_no, ask_date, ask_title, ask_contents, done, reg_no, ask_num,
-				ask_type, ask_gender, ask_trip, ask_budget, ask_convin, ask_startday, ask_endday, ask_pay, mem_no));
+	public void addElement(int ask_no, int done, int reg_no, Date ask_startday, Date ask_endday, int ask_budget,
+			int ask_num, String mem_id, int ask_commentNo) {
+		portfolio.add(new AskList(ask_no, done, reg_no, ask_startday, ask_endday, ask_budget, ask_num, mem_id,
+				ask_commentNo));
 	}
 
 	public List<AskList> getPortfolio() {

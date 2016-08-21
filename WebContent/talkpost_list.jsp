@@ -17,13 +17,15 @@
 		System.out.println("this is to get talk post list");
 		String talkpost_title = request.getParameter("title");
 		String talkpost_type = request.getParameter("type");
+		
+		System.out.println("talkpost_type : " + talkpost_type);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(serverURL, serverName, serverPW);
-			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_title like ? and talkpost_type = ?";
+			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_type = " + "'" + talkpost_type + "'";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+talkpost_title+"%");
-			pstmt.setString(2, talkpost_type);
+			//pstmt.setString(1, talkpost_title);
+			//pstmt.setString(1, talkpost_type);
 			rs = pstmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -33,6 +35,21 @@
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	else {
@@ -50,6 +67,21 @@
 			
 		} catch(Exception e) {
 			e.printStackTrace();
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 %><?xml version="1.0" encoding="UTF-8"?>

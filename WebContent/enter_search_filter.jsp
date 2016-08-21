@@ -18,7 +18,7 @@
 
 <result>enter_search_filter/<%  
 	
-	String enter_name,enter_addr,enter_phone,enter_like,enter_intro;
+	String enter_name,enter_addr,enter_phone,enter_like,enter_intro,enter_image;
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 		
@@ -42,19 +42,22 @@
 			System.out.println(rs.getString(3));//addr
 			System.out.println(rs.getString(4));//phone
 			System.out.println(rs.getString(5));//like
+			System.out.println(rs.getString(10));//image
 			
 			enter_name = rs.getString(2);
 			enter_addr = rs.getString(3);
 			enter_phone = rs.getString(4);
 			enter_like = rs.getString(5);
+			enter_image = rs.getString(10);
 			//enter_intro = rs.getString(6);
 			
-		%><%=enter_name%>|<%=enter_addr%>|<%=enter_like%>$<%				
+		%><%=enter_name%>|<%=enter_addr%>|<%=enter_like%>|<%=enter_image%>$ 
+<%				
 		}
 		System.out.println("while문 나옴");
 	}
 	catch(Exception e) {
 		System.out.println(e);
-		%><jsp:forward page="fail.xml"/><%
+%> <jsp:forward page="fail.xml"/><%
 	}
 %></result> 

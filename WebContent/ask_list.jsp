@@ -6,6 +6,7 @@
 <%@page import="com.mysql.*"%>
 <jsp:useBean id="portfolio" class="tauction.AskListPortfolio" />
 <%
+	System.out.println("This it ask_list.jsp");
 	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
@@ -16,12 +17,12 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 
-	java.util.Iterator folio = portfolio.getPortfolio();
+	java.util.Iterator<AskList> folio = portfolio.getPortfolio();
 	AskList askList = null;
 
 	request.setCharacterEncoding("utf-8");
 	String reg_name = request.getParameter("reg_name");
-	System.out.println(reg_name);
+	System.out.println("reg_name = "+reg_name);
 
 	System.out.println("this is to get ask list");
 

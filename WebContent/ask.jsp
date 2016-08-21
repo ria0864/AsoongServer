@@ -140,6 +140,7 @@
 		} else if (action.equals("ask_list")) {
 
 			String reg_name = request.getParameter("reg_name");
+			System.out.println("ask.jsp¿¡¼­ÀÇ reg_name = "+reg_name);
 	%>
 	<jsp:forward page="ask_list.jsp">
 		<jsp:param name="reg_name" value="<%=reg_name%>" />

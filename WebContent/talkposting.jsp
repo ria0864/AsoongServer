@@ -22,7 +22,7 @@
 			conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, talkpost_contents, TalkPosting.mem_no, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_no = " + talkpost_no;
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery(sql);;
 			
 			while(rs.next()) {
 				portfolio.addElement(rs.getInt("talkpost_no"), rs.getString("talkpost_type"), rs.getString("talkpost_date"),

@@ -115,7 +115,7 @@
 	java.util.Iterator<TalkPostList> iter = folio.iterator();
 	while(iter.hasNext()) {
 		synchronized(folio) {
-			TalkPostList postList = (TalkPostList)iter.next();
+			TalkPostList postList = (TalkPostList)iter.next();;;
 	%>
 	<postlist>
 		<talkpost_no><%=postList.getTalkpost_no()%></talkpost_no>

@@ -40,7 +40,7 @@
 			enter_like = rs.getString(5);
 			//enter_intro = rs.getString(6);
 			
-		%><%=enter_name%>|<%=enter_addr%>|<%=enter_phone%>|<%=enter_like%>$<%				
+		%><%=enter_name%>|<%=enter_addr%>|<%=enter_like%>$<%				
 		}
 		System.out.println("while문 나옴");
 	}

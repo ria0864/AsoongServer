@@ -26,7 +26,7 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
-		String sql="select * from Enterprise where reg_no='"+reg_no+ "'and enter_type='"+enter_type+"' and enter_convin='"+enter_convin+"";
+		String sql="select * from Enterprise where reg_no='"+reg_no+ "'and enter_type='"+enter_type+"' and enter_convin='"+enter_convin+"'";
 		pstmt = conn.prepareStatement(sql);
 /* 		pstmt.setString(1,reg_no);
 		pstmt.setString(2,enter_type);

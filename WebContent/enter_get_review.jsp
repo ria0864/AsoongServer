@@ -14,7 +14,7 @@
 	String review_date, review_contents, mem_no, mem_id="";
 %>
 
-<result>enter_get_review$<%
+<result>enter_get_review/<%
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -42,7 +42,7 @@
 			
 			sql = "select mem_id from Member where mem_no=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,enter_no);
+			pstmt.setString(1,mem_no);
 			ResultSet rs2 = pstmt.executeQuery();
 			
 			if(rs2.next()){
@@ -50,7 +50,7 @@
 				mem_id = rs2.getString(1);
 			}
 			
-		%>|<%=mem_id%>|<%=review_date%>|<%=review_contents%>|<%				
+		%><%=mem_id%>|<%=review_date%>|<%=review_contents%>|<%				
 		}
 		System.out.println("while문 나옴");
 	}

@@ -276,7 +276,7 @@
 					sql = "delete from EnterLike where mem_no=? and enter_no=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, mem_no);
-					pstmt.setString(1, enter_no);
+					pstmt.setString(2, enter_no);
 					pstmt.executeUpdate();
 					%><jsp:forward page="success.xml"/><% 
 				}

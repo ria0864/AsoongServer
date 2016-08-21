@@ -15,7 +15,7 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	java.util.Iterator folio = portfolio.getPortfolio();
+	java.util.Iterator<TalkPostList> folio = portfolio.getPortfolio();
 	TalkPostList postList = null;
 	
 	request.setCharacterEncoding("utf-8");

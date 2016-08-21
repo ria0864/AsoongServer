@@ -45,6 +45,7 @@
 				if(talkpost_title != null) {
 					sql += " and talkpost_title like '%"+talkpost_title+"%'";
 				}
+				sql += " order by talkpost_no";
 				if(pstmt != null) {
 					pstmt.close();
 				}

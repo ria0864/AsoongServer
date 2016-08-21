@@ -27,7 +27,7 @@
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
 	//	String sql="select * from Enterprise where reg_no='"+reg_no+ "'and enter_type='"+enter_type+"' and enter_convin='"+enter_convin+"'";
-		String sql = "select * from Enterprise where reg_no=3";
+		String sql = "select * from Enterprise where enter_type='펜션'";
 		System.out.println(sql);
 		pstmt = conn.prepareStatement(sql);
 /* 		pstmt.setString(1,reg_no);

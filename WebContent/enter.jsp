@@ -91,7 +91,7 @@
 			enter_pay = request.getParameter("enter_pay");
 			System.out.println(reg_no);
 			System.out.println(enter_type);
-			System.out.println(enter_convin);
+			System.out.println(enter_convin); 
 			System.out.println(enter_pay);
 
 			%><jsp:forward page="enter_search_filter.jsp">

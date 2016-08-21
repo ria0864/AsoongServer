@@ -12,19 +12,16 @@
 	//<result>enter_search$기|업|정|보$기|업|정|보</result>
 %>
 
-<result>get_enter_info$<%
+<result>get_enter_info/<%
 	
 	String enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 		
 	try{
-		System.out.println("11");
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
-		System.out.println("22");
-		String sql="select * from Enterprise where enter_name ='?'";
-		System.out.println("33");
+		String sql="select * from Enterprise where enter_name =?";
 		pstmt = conn.prepareStatement(sql);
 		System.out.println("44");
 		pstmt.setString(1,enter_name);

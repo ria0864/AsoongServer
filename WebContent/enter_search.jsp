@@ -16,7 +16,7 @@
 	//<result>enter_search$기|업|정|보$기|업|정|보</result>
 %>
 
-<result>enter_search$<%
+<result>enter_search/<%
 	
 	String enter_addr,enter_phone,enter_like,enter_intro;
 	Connection conn = null;
@@ -45,7 +45,7 @@
 			enter_like = rs.getString(5);
 			enter_intro = rs.getString(6);
 			
-		%>|<%=enter_name%>|<%=enter_addr%>|<%=enter_phone%>|<%=enter_like%>|<%=enter_intro%><%				
+		%><%=enter_name%>|<%=enter_addr%>|<%=enter_phone%>|<%=enter_like%>|<%=enter_intro%><%				
 		}
 		System.out.println("while문 나옴");
 	}

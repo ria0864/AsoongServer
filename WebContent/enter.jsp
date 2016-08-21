@@ -332,8 +332,8 @@
 		}else if(action.equals("add_review")){
 			
 			enter_name = request.getParameter("enter_name");
-			enter_name = request.getParameter("review_contents");
-			enter_name = request.getParameter("mem_id");
+			review_contents = request.getParameter("review_contents");
+			mem_id = request.getParameter("mem_id");
 			System.out.println(enter_name);
 			System.out.println(review_contents);
 			System.out.println(mem_id);

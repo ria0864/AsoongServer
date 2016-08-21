@@ -23,7 +23,7 @@
 	System.out.println(action);
 	
 	if(action != null && action.equals("getTalkPostList")) {
-		System.out.println("this is to get talk post list");
+		System.out.println("this is to get talk postlist");
 		String talkpost_title = request.getParameter("title");
 		String talkpost_type = request.getParameter("type");
 		try {

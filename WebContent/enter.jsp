@@ -3,9 +3,10 @@
 		
 		- enter_search 			: 업체 검색		[enter_name]
 		- enter_search_filter	: 업체 필터검색	[reg_name, enter_type, enter_convin, enter_pay]
-		- enter_rank			: 업체 랭킹		[reg_name,enter_type, enter_convin, enter_]
+		- enter_rank			: 업체 랭킹		[reg_name]
 		- enter_rank_region		: 지역별 업체 랭킹 [reg_name]
 		- enter_like			: 업체좋아요수 & 내가 좋아요하는지 [enter_name, mem_id]
+		- get_enter_info		: 업체정보 가져오기 [enter_name, enter_addr]
 		
 		
 		- get_review 			: 해당업체 review목록 불러오기	[enter_name]	
@@ -56,6 +57,7 @@
 		String enter_type = "";
 		String enter_convin ="";
 		String enter_pay = "";
+		String enter_addr = "";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -222,6 +224,14 @@
 			%><jsp:forward page="success.xml"/><%
 			
 				
+		}else if(action.equals("get_enter_info")){
+			enter_name = request.getParameter("enter_name");
+			System.out.println(enter_name);
+			
+			%><jsp:forward page="get_enter_info.jsp">
+			<jsp:param name="enter_name" value="<%=enter_name%>"/>
+			</jsp:forward><%
+			
 		}else if(action.equals("get_review")){
 			
 			enter_name = request.getParameter("enter_name");

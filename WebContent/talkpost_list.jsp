@@ -23,6 +23,9 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_type = " + "'" + talkpost_type + "'";
+			if(talkpost_title != null) {
+				sql += " and talkpost_title like '%" + talkpost_title + "%'";
+			}
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setString(1, talkpost_title);
 			//pstmt.setString(1, talkpost_type);

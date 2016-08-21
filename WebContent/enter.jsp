@@ -6,6 +6,7 @@
 		- enter_rank			: 업체 랭킹		[reg_name]
 		- enter_rank_region		: 지역별 업체 랭킹 [reg_name]
 		- enter_like			: 업체좋아요수 & 내가 좋아요하는지 [enter_name, mem_id]
+		- set_enter_like		: 내 업체 조아요 세팅 [enter_name, mem_id, like] like하면 생성, unlike하면 삭제
 		- get_enter_info		: 업체정보 가져오기 [enter_name, enter_addr]
 		
 		
@@ -58,6 +59,7 @@
 		String enter_convin ="";
 		String enter_pay = "";
 		String enter_addr = "";
+		String like = "";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -224,6 +226,65 @@
 			%><jsp:forward page="success.xml"/><%
 			
 				
+		}else if(action.equals("set_enter_like")){
+			enter_name = request.getParameter("enter_name");
+			mem_id = request.getParameter("mem_id");
+			like = request.getParameter("like");
+			System.out.println(enter_name);
+			System.out.println(mem_id);
+			System.out.println(like);
+			
+			if(like.equals("like")){//컬럼추가
+				
+			}else{//컬럼삭제
+				
+			}
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
+				
+				sql="select enter_no from Enterprise where enter_name =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,enter_name);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					System.out.println("DB에서 가져온 업체no");
+					System.out.println(rs.getString(1));//no
+					
+					enter_no = rs.getString(1);			
+				}else{
+					%><jsp:forward page="fail.xml"/><%					
+				}
+				sql="select mem_no from Member where mem_id =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,mem_id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					System.out.println("DB에서 가져온 업체no");
+					System.out.println(rs.getString(1));//no
+					
+					mem_no = rs.getString(1);			
+				}else{
+					%><jsp:forward page="fail.xml"/><%					
+				}
+				sql = "insert into EnterLike(mem_no, enter_no) values(?,?)";
+				pstmt = conn.prepareStatement(sql);
+		 
+		 		pstmt.setString(1,mem_no);
+				pstmt.setString(2,enter_no);
+				pstmt.executeUpdate();
+				%><jsp:forward page="success.xml"/><%
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				%><jsp:forward page="fail.xml"/><%
+			}
+			
+			%><jsp:forward page="fail.xml"/><%
+			
+			
 		}else if(action.equals("get_enter_info")){
 			enter_name = request.getParameter("enter_name");
 			System.out.println(enter_name);

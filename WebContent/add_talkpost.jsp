@@ -37,6 +37,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("before conn");
 			conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+			
 			// get next posting number
 			sql = "select count(*) from TalkPosting";
 			pstmt = conn.prepareStatement(sql);
@@ -50,20 +51,23 @@
 				<jsp:forward page="no_login.xml" />
 				<%
 			} else {
-				
-				System.out.println("mem_id : " + mem_id);
 				sql = "select mem_no from Member where mem_id = '" + mem_id + "'";
 				System.out.println(sql);
+				if(pstmt != null) {
+					pstmt.close();
+				}
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery(sql);
 				if(rs.next()) {
 					mem_no = rs.getInt(1);
 				}
-				System.out.println("mem_no : " + mem_no);
 				
 				// insert posting
 				String values = talkpost_no+",'"+talkpost_type+"','"+talkpost_date+"','"+talkpost_title+"','"+talkpost_content+"',"+mem_no;  
 				sql = "insert into TalkPosting (talkpost_no, talkpost_type, talkpost_date, talkpost_title, talkpost_contents, mem_no) values ("+values+")";
+				if(pstmt != null) {
+					pstmt.close();
+				}
 				pstmt = conn.prepareStatement(sql);
 				boolean pf = pstmt.execute(sql);
 			

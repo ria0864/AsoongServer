@@ -53,7 +53,7 @@
 		sql = "select reg_no from Region where reg_name=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, reg_name);
-		rs = pstmt.executeQuery(sql);
+		rs = pstmt.executeQuery();
 
 		if (true == rs.next()) {
 			System.out.print("DB에서 가져온 reg_no : ");
@@ -66,10 +66,10 @@
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
 				sql = "select * from Ask";
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(sql);
-				//pstmt = conn.prepareStatement(sql);
-				//rs = pstmt.executeQuery();
+				//stmt = conn.createStatement();
+				//rs = stmt.executeQuery();
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					System.out.println(rs.getString(1));
 					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getDate(3).toString(),

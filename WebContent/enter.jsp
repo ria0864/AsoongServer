@@ -85,15 +85,20 @@
 				
 		} else if (action.equals("enter_search_filter")) {
 
-			reg_name = request.getParameter("reg_name");
+			reg_no = request.getParameter("reg_no");
 			enter_type = request.getParameter("enter_type");
 			enter_convin =request.getParameter("enter_convin");
 			enter_pay = request.getParameter("enter_pay");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-			
+			System.out.println(reg_no);
+			System.out.println(enter_type);
+			System.out.println(enter_convin);
+			System.out.println(enter_pay);
+
+			%><jsp:forward page="enter_search_filter.jsp">
+			<jsp:param name="reg_no" value="<%=reg_no%>"/>
+			<jsp:param name="enter_type" value="<%=enter_type%>"/>
+			<jsp:param name="enter_convin" value="<%=enter_convin%>"/>
+			</jsp:forward><%
 				
 		} else if (action.equals("enter_rank")) {
 
@@ -107,22 +112,12 @@
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				conn=DriverManager.getConnection(serverURL, serverName, serverPW);
-				System.out.println("11");
 
 				sql="select reg_no from Region where reg_name =?";
-				System.out.println("22");
-
 				pstmt = conn.prepareStatement(sql);
-				
-				System.out.println("33");
-
 				pstmt.setString(1,reg_name);
-				
-				System.out.println("44");
-
 				rs = pstmt.executeQuery();
 				
-				System.out.println("sql쿼리문실행끝남");
 				if(rs.next()){
 					System.out.println("DB에서 가져온 업체no");
 					System.out.println(rs.getString(1));//no

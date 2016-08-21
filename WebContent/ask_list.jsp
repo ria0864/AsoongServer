@@ -3,7 +3,7 @@
 	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
-
+	// insert into Ask (ask_no,ask_date,ask_title,ask_contents,ask_done,reg_no,ask_num,ask_type,ask_gender,ask_trip,ask_budget,ask_convin,ask_startday,ask_endday,ask_pay,mem_no) values(1,'2015-01-01',"title","contents",1,3,3,"type","gender","trip",10000,"convin",'2015-01-01','2015-01-02',"pay",2);
 	String sql = "";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -15,25 +15,6 @@
 	System.out.println("reg_name = " + reg_name);
 
 	System.out.println("this is to get ask list");
-
-	/*int ask_no=0;
-	String ask_date = null;
-	String ask_title = null;
-	String ask_contents = null;
-	int done=0;
-	int reg_no=0;
-	int ask_num=0;
-	String ask_type = null;
-	String ask_gender = null;
-	String ask_trip = null;
-	int ask_budget=0;
-	String ask_convin = null;
-	String ask_startday = null;
-	String ask_endday = null;
-	String ask_pay = null;
-	int mem_no=0;
-	String tf ="all";
-	if(tf.equals(reg_name))	System.out.println(tf);*/
 
 	int reg_no = 0;
 
@@ -52,109 +33,61 @@
 			reg_no = rs.getInt(1);
 		}
 
-		if (reg_name.equals("all"))
-			System.out.println("같아요~~~");
-
-		if (reg_name.equals("all")) {
 			try {
-				System.out.println("같아요~~~");
 				Class.forName("com.mysql.jdbc.Driver");
-				System.out.println("1");
 				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
+				int like = 0;
 				System.out.println("2");
-				sql = "select * from Ask";
+				if(reg_no==1)
+					sql = "select Ask.ask_no, ask_done, reg_no, ask_startday, ask_endday, ask_budget, ask_num, mem_id, count(*) from Ask, AskLike, Member where Ask.ask_no = AskLike.ask_no and Ask.mem_no = Member.mem_no group by Ask.ask_no";
+				else{
+					sql = "select Ask.ask_no, ask_done, reg_no, ask_startday, ask_endday, ask_budget, ask_num, mem_id, count(*) from Ask, AskLike, Member where Ask.reg_no ='"+reg_no+"' and Ask.ask_no = AskLike.ask_no and Ask.mem_no = Member.mem_no group by Ask.ask_no";
+					//pstmt.setInt(1, reg_no);
+				}
 				System.out.println("3");
-				//stmt = conn.createStatement();
-				//rs = stmt.executeQuery();
 				pstmt = conn.prepareStatement(sql);
 				System.out.println("4");
 				rs = pstmt.executeQuery();
 				System.out.println("5");
 				while (rs.next()) {
 					System.out.println("while문 진입 : " + rs.getString(1));
-
-					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4),
-							rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
-							rs.getString(10), rs.getInt(11), rs.getString(12), rs.getDate(13), rs.getDate(14),
-							rs.getString(15), rs.getInt(16));
+					portfolio.addElement(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4),
+							rs.getDate(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9));
 				}
 				System.out.println("while문 빠져나옴");
 			} catch (Exception e) {
-%><jsp:forward page="fail.xml" /><%
-	System.out.println("fail");
+				%><jsp:forward page="fail.xml" />
+				<%
+				System.out.println("fail");
 				System.out.println(e.toString());
 			}
-		} else {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection(serverURL, serverName, serverPW);
-				sql = "select * from Ask where reg_no=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, reg_no);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					System.out.println(rs.getString(1));
-					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4),
-							rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9),
-							rs.getString(10), rs.getInt(11), rs.getString(12), rs.getDate(13), rs.getDate(14),
-							rs.getString(15), rs.getInt(16));
-					/*System.out.println(rs.getString(1));
-					ask_no += rs.getInt(1);
-					ask_date += rs.getDate(2).toString();
-					ask_title += rs.getString(3);
-					ask_contents += rs.getString(4);
-					done += rs.getInt(5);
-					reg_no += rs.getInt(6);
-					ask_num += rs.getInt(7);
-					ask_type += rs.getString(8);
-					ask_gender += rs.getString(9);
-					ask_trip += rs.getString(10);
-					ask_budget += rs.getInt(11);
-					ask_convin += rs.getString(12);
-					ask_startday += rs.getString(13).toString();
-					ask_endday += rs.getString(14).toString();
-					ask_pay += rs.getString(15);
-					mem_no += rs.getInt(16);*/
-
-				}
-			} catch (Exception e) {
-%><jsp:forward page="fail.xml" /><%
-	System.out.println(e.toString());
-			}
-		}
 		rs.close();
 		pstmt.close();
 		conn.close();
 	} catch (Exception e) {
-%><jsp:forward page="fail.xml" /><%
-	System.out.println(e.toString());
+		%><jsp:forward page="fail.xml" />
+		<%
+		System.out.println(e.toString());
 	}
 %><?xml version="1.0" encoding="UTF-8"?>
-<portfolio> 
-	<% java.util.List<AskList> folio = portfolio.getPortfolio();
-	java.util.Iterator<AskList> iter = folio.iterator();
-		while(iter.hasNext()) {
-			synchronized(folio) {
-				AskList askList = (AskList)iter.next();
- 				System.out.println("export xml : " + askList.getAsk_no());
- %> 
-	 <asklist> 
-		<ask_no><%=askList.getAsk_no()%></ask_no> 
-		<ask_date><%=askList.getAsk_date()%></ask_date>
-		<ask_title><%=askList.getAsk_title()%></ask_title> 
-		<ask_contents><%=askList.getAsk_contents()%></ask_contents>
+<portfolio><%
+ 	java.util.List<AskList> folio = portfolio.getPortfolio();
+ 	java.util.Iterator<AskList> iter = folio.iterator();
+ 	while (iter.hasNext()) {
+ 		synchronized (folio) {
+ 			AskList askList = (AskList) iter.next();
+ 			System.out.println("export xml : " + askList.getAsk_no());
+ %><asklist> 
+ 		<ask_no><%=askList.getAsk_no()%></ask_no>
 		<done><%=askList.getDone()%></done>
 		<reg_no><%=askList.getAsk_no()%></reg_no>
-		<ask_num><%=askList.getAsk_num()%></ask_num> 
-		<ask_type><%=askList.getAsk_type()%></ask_type>
-		<ask_gender><%=askList.getAsk_gender()%></ask_gender>
-		<ask_trip><%=askList.getAsk_trip()%></ask_trip>
-		<ask_budget><%=askList.getAsk_budget()%></ask_budget>
-		<ask_convin><%=askList.getAsk_convin()%></ask_convin>
-		<ask_startday><%=askList.getAsk_startday()%></ask_startday> 
+		<ask_startday><%=askList.getAsk_startday()%></ask_startday>
 		<ask_endday><%=askList.getAsk_endday()%></ask_endday>
-		<ask_pay><%=askList.getAsk_pay()%></ask_pay> 
-		<mem_no><%=askList.getMem_no()%></mem_no>
-	</asklist> <% }
- 	}%> 
- </portfolio>
+		<ask_budget><%=askList.getAsk_budget()%></ask_budget>
+		<ask_num><%=askList.getAsk_num()%></ask_num>
+		<mem_id><%=askList.getMem_id()%></mem_id>
+		<ask_commentNo><%=askList.getAsk_commentNo()%></ask_commentNo>
+	</asklist> <%
+ 		}
+ 	}
+ %> </portfolio>

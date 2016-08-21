@@ -5,7 +5,7 @@
 <%
 	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
-	String serverPW = "asoong";
+	String serverPW = "asoong"; 
 	
 	String reg_no = request.getParameter("reg_no");
 //	String reg_no = "3";

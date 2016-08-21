@@ -3,7 +3,7 @@
 <%@ page import = "java.sql.*" %>
 
 <%
-	String serverURL = "jdbc:mysql://52.78.15.170/tauctionDB";
+	String serverURL = "jdbc:mysql://52.78.101.183/tauctionDB";
 	String serverName = "tauction";
 	String serverPW = "asoong";
 	
@@ -19,13 +19,18 @@
 	PreparedStatement pstmt = null;
 		
 	try{
+		System.out.println("11");
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
-		
+		System.out.println("22");
 		String sql="select * from Enterprise where enter_name ='?'";
+		System.out.println("33");
 		pstmt = conn.prepareStatement(sql);
+		System.out.println("44");
 		pstmt.setString(1,enter_name);
+		System.out.println("55");
 		ResultSet rs = pstmt.executeQuery();
+		System.out.println("66");
 		
 		while(rs.next()){
 			System.out.println("DB에서 가져온 업체정보");

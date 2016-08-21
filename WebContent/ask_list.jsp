@@ -72,48 +72,18 @@
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					System.out.println(rs.getString(1));
+
 					portfolio.addElement(rs.getInt(1), rs.getDate(2), rs.getDate(3).toString(),
 							rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12),
 							rs.getString(13).toString(), rs.getString(14).toString(), rs.getString(15),
 							rs.getInt(16));
-					/*ask_no += rs.getInt(1);
-					System.out.println("ask_no : " + ask_no);
-					ask_date += rs.getDate(2).toString();
-					System.out.println("ask_date : " + ask_date);
-					ask_title += rs.getString(3);
-					System.out.println("ask_title : " + ask_title);
-					ask_contents += rs.getString(4);
-					System.out.println("ask_contents : " + ask_contents);
-					done += rs.getInt(5);
-					System.out.println("done : " + done);
-					reg_no += rs.getInt(6);
-					System.out.println("reg_no : " + reg_no);
-					ask_num += rs.getInt(7);
-					System.out.println("ask_num : " + ask_num);
-					ask_type += rs.getString(8);
-					System.out.println("ask_type : " + ask_type);
-					ask_gender += rs.getString(9);
-					System.out.println("ask_gender : " + ask_gender);
-					ask_trip += rs.getString(10);
-					System.out.println("ask_trip : " + ask_trip);
-					ask_budget += rs.getInt(11);
-					System.out.println("ask_budget : " + ask_budget);
-					ask_convin += rs.getString(12);
-					System.out.println("ask_convin : " + ask_convin);
-					ask_startday += rs.getString(13).toString();
-					System.out.println("ask_startday : " + ask_startday);
-					ask_endday += rs.getString(14).toString();
-					System.out.println("ask_endday : " + ask_endday);
-					ask_pay += rs.getString(15);
-					System.out.println("ask_pay : " + ask_pay);
-					mem_no += rs.getInt(16);
-					System.out.println("mem_no : " + mem_no);*/
+					
 				}
 			} catch (Exception e) {
-%><jsp:forward page="fail.xml" />
-<%
-	System.out.println("fail");
+				%><jsp:forward page="fail.xml" />
+				<%
+				System.out.println("fail");
 				System.out.println(e.toString());
 			}
 		} else {

@@ -16,3 +16,4 @@ public class PostListPortfolio implements Serializable {
 		return portfolio.iterator();
 	}
 }
+

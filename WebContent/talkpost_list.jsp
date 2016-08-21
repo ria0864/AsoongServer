@@ -20,15 +20,41 @@
 		
 		System.out.println("talkpost_type : " + talkpost_type);
 		try {
+			int n = 0;
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(serverURL, serverName, serverPW);
-			sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_type = " + "'" + talkpost_type + "'";
+			
+			//check the number of post list
+			sql = "select count(*) from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_type = " + "'" + talkpost_type + "'";
+			if(talkpost_title != null) {
+				sql += " and talkpost_title like '%"+talkpost_title+"%'";
+			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 			
-			while(rs.next()) {
-				portfolio.addElement(rs.getInt("talkpost_no"), rs.getString("talkpost_type"), rs.getString("talkpost_date"),
-						rs.getString("talkpost_title"), rs.getString("mem_id"));
+			if(rs.next()) {
+				n = rs.getInt(1);
+			}
+			if(n < 1) {
+				%>
+				<jsp:forward page="no_posting.xml" />
+				<%
+			} else {
+				//get post list
+				sql = "select talkpost_no, talkpost_type, talkpost_date, talkpost_title, mem_id from TalkPosting, Member where TalkPosting.mem_no = Member.mem_no and talkpost_type = " + "'" + talkpost_type + "'";
+				if(talkpost_title != null) {
+					sql += " and talkpost_title like '%"+talkpost_title+"%'";
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery(sql);
+				
+				while(rs.next()) {
+					portfolio.addElement(rs.getInt("talkpost_no"), rs.getString("talkpost_type"), rs.getString("talkpost_date"),
+							rs.getString("talkpost_title"), rs.getString("mem_id"));
+				}
 			}
 			
 		} catch(Exception e) {

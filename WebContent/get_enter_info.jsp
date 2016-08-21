@@ -22,7 +22,7 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(serverURL, serverName, serverPW);
 		
-		String sql="select * from Enterprise where enter_name =?";
+		String sql="select * from Enterprise where enter_name ='?'";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,enter_name);
 		ResultSet rs = pstmt.executeQuery();
